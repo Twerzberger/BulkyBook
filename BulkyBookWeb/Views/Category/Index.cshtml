@@ -1,7 +1,32 @@
-﻿
+﻿@model IEnumerable<Category>
 @{
     ViewData["Title"] = "Index";
 }
 
 <h1>IndexCategory</h1>
+<table class="table table-bordered table-striped" style="width:100%">
+    <thead>
+        <tr>
+            <th>
+                Category Nmae
+            </th>
+            <th>
+                Display Order
+            </th>
+        </tr>        
+    </thead>
+    <tbody>
+        @foreach (var obj in Model)
+        {
+            <tr>
+                <td width="40%">
+                    @obj.CategoryName
+                </td>
+                <td width="30%">
+                    @obj.DisplayOrder
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
 
