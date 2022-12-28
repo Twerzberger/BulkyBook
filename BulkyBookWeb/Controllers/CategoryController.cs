@@ -1,5 +1,6 @@
 ﻿using BulkyBookWeb.Data;
 using BulkyBookWeb.Migrations;
+using BulkyBookWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BulkyBookWeb.Controllers
@@ -16,6 +17,19 @@ namespace BulkyBookWeb.Controllers
         {
             var objCategoryList = _db.Categories.ToList();  
             return View(objCategoryList);
+        }
+        //GET
+        public IActionResult Create()
+        {            
+            return View();
+        }
+        //POST
+        [HttpPost]
+        public IActionResult Create(Category cat)
+        {
+            _db.Categories.Add(cat);
+            _db.SaveChanges();
+            return RedirectToAction("Index");
         }
     }
 }
