@@ -39,5 +39,31 @@ namespace BulkyBookWeb.Controllers
             }
             return View(cat);
         }
+        public IActionResult Edit(int? id)
+        {
+            if(id == null || id == 0)            
+                return NotFound();            
+            var catFromDB = _db.Categories.Find(id);
+            if(catFromDB == null)            
+                return NotFound();
+            
+            return View(catFromDB);
+        }
+        //POST
+        [HttpPost]
+        public IActionResult Edit(Category cat)
+        {
+            if (cat.CategoryName == cat.DisplayOrder.ToString())
+            {
+                ModelState.AddModelError("categoryname", "Category Name should not match Display Order");
+            }
+            if (ModelState.IsValid)
+            {
+                _db.Categories.Update(cat);
+                _db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View(cat);
+        }
     }
 }
