@@ -2,9 +2,10 @@
 <form method="post" asp-action="Edit">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
-            <h2 class="text-primary">Edit Category</h2>            
+            <h2 class="text-primary">Edit Category</h2>
         </div>
         @*<div asp-validation-summary="All"></div>*@
+        <input type="hidden" asp-for="CategoryId" />
         <div class="mb-3">
             <label asp-for="CategoryName"></label>
             <input asp-for="CategoryName" class="form-control" />
